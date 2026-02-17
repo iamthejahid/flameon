@@ -32,15 +32,10 @@ class SpaceGame extends FlameGame
     children.whereType<Enemy>().forEach((e) => e.removeFromParent());
     children.whereType<Bullet>().forEach((b) => b.removeFromParent());
 
-    // Reset or add player
-    final existingPlayer = children.whereType<Player>().firstOrNull;
-    if (existingPlayer == null) {
-      player = Player();
-      add(player);
-    } else {
-      player = existingPlayer;
-      player.position = Vector2(size.x / 2, size.y - 100);
-    }
+    // Always add a fresh player on start/restart to avoid lifecycle issues
+    children.whereType<Player>().forEach((p) => p.removeFromParent());
+    player = Player();
+    add(player);
 
     if (children.whereType<ScoreText>().isEmpty) {
       add(ScoreText());
