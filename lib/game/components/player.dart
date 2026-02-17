@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import '../config/game_config.dart';
 import '../space_game.dart';
 import 'bullet.dart';
+import 'explosion_particle.dart';
 
 class Player extends SpriteComponent
     with HasGameReference<SpaceGame>, KeyboardHandler {
@@ -72,5 +73,10 @@ class Player extends SpriteComponent
 
   void fire() {
     game.add(Bullet(position: position.clone()..y -= size.y / 2));
+  }
+
+  void die() {
+    removeFromParent();
+    game.add(ExplosionParticle(position: position.clone()));
   }
 }

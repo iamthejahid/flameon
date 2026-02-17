@@ -67,6 +67,8 @@ class SpaceGame extends FlameGame
   }
 
   void onPlayerDeath() {
+    if (isGameOver) return;
+    player.die();
     isGameOver = true;
     overlays.add('GameOver');
   }

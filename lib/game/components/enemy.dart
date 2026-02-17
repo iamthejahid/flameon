@@ -4,6 +4,7 @@ import 'package:flame/components.dart';
 import '../config/game_config.dart';
 import '../space_game.dart';
 import 'player.dart';
+import 'explosion_particle.dart';
 
 class Enemy extends SpriteComponent
     with HasGameReference<SpaceGame>, CollisionCallbacks {
@@ -41,7 +42,13 @@ class Enemy extends SpriteComponent
   ) {
     super.onCollisionStart(intersectionPoints, other);
     if (other is Player) {
+      die();
       game.onPlayerDeath();
     }
+  }
+
+  void die() {
+    removeFromParent();
+    game.add(ExplosionParticle(position: position.clone()));
   }
 }
