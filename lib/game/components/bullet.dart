@@ -39,8 +39,7 @@ class Bullet extends CircleComponent
     super.onCollisionStart(intersectionPoints, other);
     if (other is Enemy) {
       removeFromParent();
-      other.die();
-      game.score += 10;
+      other.takeDamage(1);
     }
   }
 }

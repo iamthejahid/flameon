@@ -103,10 +103,37 @@ class SpaceGame extends FlameGame
   }
 
   void _spawnEnemy() {
-    final speed =
-        GameConfig.enemySpeedMin +
-        _random.nextDouble() *
-            (GameConfig.enemySpeedMax - GameConfig.enemySpeedMin);
-    add(Enemy(speed: speed));
+    final roll = _random.nextDouble();
+
+    // As gameTime increases, special enemies become more common
+    final specialChance =
+        (_gameTime / 60) * 0.5; // Starts at 0, goes to 50% chance at 1 min
+
+    if (roll < specialChance) {
+      final subRoll = _random.nextDouble();
+      if (subRoll < 0.33) {
+        // Scout: Tiny, fast, zig-zag
+        add(Enemy(type: EnemyType.scout, speed: GameConfig.scoutSpeed));
+      } else if (subRoll < 0.66) {
+        // Tank: Large, slow, tough
+        add(
+          Enemy(
+            type: EnemyType.tank,
+            speed: GameConfig.tankSpeed,
+            health: GameConfig.tankHealth,
+          ),
+        );
+      } else {
+        // Kamikaze: Fast dive
+        add(Enemy(type: EnemyType.kamikaze, speed: GameConfig.kamikazeSpeed));
+      }
+    } else {
+      // Standard enemy
+      final speed =
+          GameConfig.enemySpeedMin +
+          _random.nextDouble() *
+              (GameConfig.enemySpeedMax - GameConfig.enemySpeedMin);
+      add(Enemy(speed: speed, type: EnemyType.standard));
+    }
   }
 }
