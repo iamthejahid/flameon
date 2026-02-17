@@ -1,6 +1,8 @@
 import 'dart:math';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
+import 'package:flame_audio/flame_audio.dart';
+import 'package:flutter/foundation.dart';
 import 'components/player.dart';
 import 'components/enemy.dart';
 import 'components/bullet.dart';
@@ -19,7 +21,28 @@ class SpaceGame extends FlameGame
   @override
   Future<void> onLoad() async {
     await super.onLoad();
+    // Cache sounds (Try-catch added to avoid crashing if assets are missing)
+    try {
+      if (GameConfig.sfxEnabled) {
+        await FlameAudio.audioCache.loadAll([
+          GameConfig.sfxShoot,
+          GameConfig.sfxExplosion,
+        ]);
+      }
+    } catch (e) {
+      debugPrint('Audio assets missing: $e');
+    }
     _startOrRestart();
+  }
+
+  void playSfx(String file) {
+    if (GameConfig.sfxEnabled) {
+      try {
+        FlameAudio.play(file);
+      } catch (e) {
+        // Silently fail if sfx is missing during gameplay
+      }
+    }
   }
 
   void _startOrRestart() {

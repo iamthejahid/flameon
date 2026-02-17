@@ -1,6 +1,7 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'game/space_game.dart';
+import 'game/config/game_config.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -85,6 +86,19 @@ class _GamePageState extends State<GamePage> {
             );
           },
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        mini: true,
+        backgroundColor: Colors.white24,
+        onPressed: () {
+          setState(() {
+            GameConfig.sfxEnabled = !GameConfig.sfxEnabled;
+          });
+        },
+        child: Icon(
+          GameConfig.sfxEnabled ? Icons.volume_up : Icons.volume_off,
+          color: Colors.white,
+        ),
       ),
     );
   }

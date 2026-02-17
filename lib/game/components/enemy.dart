@@ -50,5 +50,6 @@ class Enemy extends SpriteComponent
   void die() {
     removeFromParent();
     game.add(ExplosionParticle(position: position.clone()));
+    game.playSfx(GameConfig.sfxExplosion);
   }
 }

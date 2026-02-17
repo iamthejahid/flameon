@@ -14,4 +14,9 @@ class GameConfig {
   static const double difficultyScaling =
       0.1; // Decrease interval by 0.1s every 10 seconds
   static const double fireInterval = 0.25; // seconds (4 shots per sec)
+
+  // Audio Settings
+  static bool sfxEnabled = true;
+  static const String sfxShoot = 'shoot.wav';
+  static const String sfxExplosion = 'explosion.wav';
 }

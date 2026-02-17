@@ -73,6 +73,7 @@ class Player extends SpriteComponent
 
   void fire() {
     game.add(Bullet(position: position.clone()..y -= size.y / 2));
+    game.playSfx(GameConfig.sfxShoot);
   }
 
   void die() {
