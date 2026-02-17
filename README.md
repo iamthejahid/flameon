@@ -10,7 +10,7 @@ It's nothing fancy and definitely not a "full" game yet, but it was a great way 
 ## 🕹️ The Vibe
 It's a very basic space shooter. You control a ship, dodge some red alien invaders, and try to get a high score. Simple as that!
 
-![Gameplay Demo](assets/media/flameon_demo.gif)
+![Gameplay Demo](assets/media/flameon_SR.gif)
 *(Note: If the GIF isn't loading, you can check out the [recording here](assets/media/flameon_SR.gif).)*
 
 ## 🧠 What I Explored
@@ -32,5 +32,4 @@ Since this was a learning exercise, I focused on the core fundamentals:
 ### ✌️ Final Thoughts
 This was just a "see what I can do" project to break the ice with Flame. It's modest, but it was a lot of fun to build and definitely made me respect the work that goes into even the simplest games!
 
----
-*Just a dev learning new things, one laser at a time.*
+
